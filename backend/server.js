@@ -22,8 +22,6 @@ app.use(apiLimiter); // Apply global rate limiter
 // CORS configuration
 const allowedOrigins = [process.env.FRONT_END_URL, "http://localhost:5173"];
 
-mongoose.connect(process.env.DB_URL);
-
 const corsOptions = {
   origin: (origin, callback) => {
     // Allow requests with no origin, like mobile apps or curl requests
