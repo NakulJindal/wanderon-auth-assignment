@@ -89,7 +89,7 @@ project/
 
 ## usage
 
-1. Open your browser to `http://localhost:5173`.
+1. Open your browser to deployed link.
 2. Click "Register" to create a new account.
 3. Upon successful registration, you will be logged in and redirected to the Dashboard.
 4. You can Logout and Login again.
