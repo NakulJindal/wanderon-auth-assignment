@@ -15,9 +15,7 @@ export const AuthProvider = ({ children }) => {
   // Check if user is logged in
   const checkUserLoggedIn = async () => {
     try {
-      const { data } = await axios.get(
-        `${import.meta.env.VITE_BACKEND_BASE_URL}/api/users/profile`
-      );
+      const { data } = await axios.get("/api/users/profile");
       setUser(data);
     } catch (err) {
       setUser(null);
@@ -30,10 +28,7 @@ export const AuthProvider = ({ children }) => {
   const login = async (email, password) => {
     try {
       setError(null);
-      const { data } = await axios.post(
-        `${import.meta.env.VITE_BACKEND_BASE_URL}/api/users/auth`,
-        { email, password }
-      );
+      const { data } = await axios.post("/api/users/auth", { email, password });
       setUser(data);
       return data;
     } catch (err) {
@@ -46,14 +41,11 @@ export const AuthProvider = ({ children }) => {
   const register = async (username, email, password) => {
     try {
       setError(null);
-      const { data } = await axios.post(
-        `${import.meta.env.VITE_BACKEND_BASE_URL}/api/users/register`,
-        {
-          username,
-          email,
-          password,
-        }
-      );
+      const { data } = await axios.post("/api/users/register", {
+        username,
+        email,
+        password,
+      });
       setUser(data);
       return data;
     } catch (err) {
@@ -71,9 +63,7 @@ export const AuthProvider = ({ children }) => {
   // Logout
   const logout = async () => {
     try {
-      await axios.post(
-        `${import.meta.env.VITE_BACKEND_BASE_URL}/api/users/logout`
-      );
+      await axios.post("/api/users/logout");
       setUser(null);
     } catch (err) {
       console.error(err);
