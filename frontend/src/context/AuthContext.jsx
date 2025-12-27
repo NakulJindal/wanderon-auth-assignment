@@ -2,6 +2,7 @@ import { createContext, useState, useEffect } from "react";
 import axios from "axios";
 
 const AuthContext = createContext();
+const backendUrl = import.meta.env.VITE_BACKEND_BASE_URL;
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -15,9 +16,10 @@ export const AuthProvider = ({ children }) => {
   // Check if user is logged in
   const checkUserLoggedIn = async () => {
     try {
-      const { data } = await axios.get("/api/users/profile");
+      const { data } = await axios.get(`${backendUrl}/api/users/profile`);
       setUser(data);
     } catch (err) {
+      console.log(err);
       setUser(null);
     } finally {
       setLoading(false);
@@ -28,7 +30,10 @@ export const AuthProvider = ({ children }) => {
   const login = async (email, password) => {
     try {
       setError(null);
-      const { data } = await axios.post("/api/users/auth", { email, password });
+      const { data } = await axios.post(`${backendUrl}/api/users/auth`, {
+        email,
+        password,
+      });
       setUser(data);
       return data;
     } catch (err) {
@@ -41,7 +46,7 @@ export const AuthProvider = ({ children }) => {
   const register = async (username, email, password) => {
     try {
       setError(null);
-      const { data } = await axios.post("/api/users/register", {
+      const { data } = await axios.post(`${backendUrl}/api/users/register`, {
         username,
         email,
         password,
@@ -63,7 +68,7 @@ export const AuthProvider = ({ children }) => {
   // Logout
   const logout = async () => {
     try {
-      await axios.post("/api/users/logout");
+      await axios.post(`${backendUrl}/api/users/logout`);
       setUser(null);
     } catch (err) {
       console.error(err);
