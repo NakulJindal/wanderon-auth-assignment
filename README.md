@@ -1,103 +1,112 @@
-# MERN Authentication System
+# Wanderon Auth Assignment  
+### Secure User Authentication System (MERN Stack)
 
-A secure, production-ready authentication system using the MERN stack (MongoDB, Express.js, React.js, Node.js).
+A secure, production-ready **authentication system** built using the **MERN stack** (MongoDB, Express.js, React.js, Node.js).  
+This project demonstrates user registration, login, JWT-based authentication using HTTP-only cookies, protected routes, and security best practices.
 
-## Features
+🔗 **Live Demo:** https://wanderon-auth-assignment.vercel.app/  
+🔗 **GitHub Repository:** https://github.com/NakulJindal/wanderon-auth-assignment
 
-- **User Registration**: Username, Email, Password (hashed with bcrypt).
-- **User Login**: JWT-based authentication.
-- **Secure Sessions**: HttpOnly, Secure, SameSite cookies.
-- **Protected Routes**: Middleware to verify JWT.
-- **Rate Limiting**: Protection against brute-force and DDoS attacks using `express-rate-limit`.
-- **Security**: Helmet for headers, CORS, Input Validation.
-- **Frontend**: React with Context API for state management.
+---
 
-## Project Structure
+## 📌 Overview
+
+The objective of this assignment was to build a **secure and scalable authentication system** that follows industry best practices.  
+The application supports:
+- Secure user registration and login
+- Stateless JWT-based authentication
+- Cookie-based session handling
+- Protection against common security vulnerabilities
+
+---
+
+## 🛠 Tech Stack
+
+### Backend
+- Node.js
+- Express.js
+- MongoDB & Mongoose
+- JWT (jsonwebtoken)
+- bcrypt
+- express-rate-limit
+- helmet
+- cookie-parser
+- CORS
+
+### Frontend
+- React.js
+- React Router
+- Context API
+- Axios
+
+---
+
+## ✨ Features
+
+- User Registration with password hashing (bcrypt)
+- User Login with JWT authentication
+- JWT stored securely in **HTTP-only cookies**
+- Protected dashboard route
+- Logout functionality
+- Rate limiting to prevent brute-force attacks
+- Security headers and request sanitization
+- Clean and modular code structure
+
+---
+
+## 🔐 Security Considerations
+
+- **Password Hashing:** Passwords are never stored in plain text (bcrypt)
+- **JWT + HttpOnly Cookies:** Prevents XSS attacks
+- **Stateless Authentication:** Enables horizontal scalability
+- **Rate Limiting:** Limits repeated login attempts
+- **Secure Headers:** Using Helmet middleware
+- **CORS with Credentials:** Ensures secure cookie sharing
+
+---
+
+## 📂 Project Structure
 
 ```
-project/
-├── backend/            # Node/Express Backend
-│   ├── config/         # Database configuration
-│   ├── controllers/    # Route controllers (Auth logic)
-│   ├── middleware/     # Custom middleware (Auth, Error handling)
-│   ├── models/         # Mongoose models (User)
-│   ├── routes/         # API routes
-│   └── server.js       # Entry point
-├── frontend/           # React Frontend
-│   ├── src/
-│   │   ├── components/ # Reusable components (Header, PrivateRoute)
-│   │   ├── context/    # AuthContext (State Management)
-│   │   ├── pages/      # Application Pages (Login, Register, Dashboard)
-│   │   └── App.jsx     # Main App component with Routes
-└── README.md
+wanderon-auth-assignment/
+ ├── backend/
+ ├── frontend/
+ └── README.md
 ```
 
-## Setup Instructions
+---
 
-### Prerequisites
+## 🚀 Getting Started (Local Setup)
 
-- Node.js (v14+)
-- MongoDB (Running locally or MongoDB Atlas URI)
+### Backend
 
-### Backend Setup
+```bash
+cd backend
+npm install
+npm run dev
+```
 
-1. Navigate to the backend directory:
+### Frontend
 
-   ```bash
-   cd backend
-   ```
+```bash
+cd frontend
+npm install
+npm start
+```
 
-2. Install dependencies:
+---
 
-   ```bash
-   npm install
-   ```
+## 📡 API Endpoints
 
-3. Create a `.env` file in the `backend` directory based on `.env.example`:
+| Method | Endpoint | Description |
+|------|---------|-------------|
+| POST | /api/auth/register | Register user |
+| POST | /api/auth/login | Login user |
+| POST | /api/auth/logout | Logout |
+| GET | /api/auth/protected | Protected route |
 
-   ```bash
-   cp .env.example .env
-   ```
+---
 
-   Update `MONGO_URI` if necessary.
+## 👤 Author
 
-4. Start the server:
-   ```bash
-   npm run dev
-   ```
-   The server will run on `http://localhost:5000`.
-
-### Frontend Setup
-
-1. Navigate to the frontend directory:
-
-   ```bash
-   cd frontend
-   ```
-
-2. Install dependencies:
-
-   ```bash
-   npm install
-   ```
-
-3. Start the development server:
-   ```bash
-   npm run dev
-   ```
-   The application will run on `http://localhost:5173`.
-
-## usage
-
-1. Open your browser to deployed link.
-2. Click "Register" to create a new account.
-3. Upon successful registration, you will be logged in and redirected to the Dashboard.
-4. You can Logout and Login again.
-5. The Dashboard is protected; if you try to access it while logged out, you will be redirected to Login.
-
-## API Endpoints
-
-- `POST /api/users/register`: Register a new user.
-- `POST /api/users/auth`: Login user and get token (set in cookie).
-- `POST /api/users/logout`: Logout user and clear cookie.
-- `GET /api/users/profile`: Get current user profile (Protected).
+**Nakul Jindal**
