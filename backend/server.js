@@ -20,10 +20,27 @@ app.use(helmet());
 app.use(apiLimiter); // Apply global rate limiter
 
 // CORS configuration
-app.use(cors({
-  origin: 'http://localhost:5173', // Vite default port
+const allowedOrigins = [process.env.FRONT_END_URL, "http://localhost:5173"];
+
+mongoose.connect(process.env.DB_URL);
+
+const corsOptions = {
+  origin: (origin, callback) => {
+    // Allow requests with no origin, like mobile apps or curl requests
+    if (!origin) return callback(null, true);
+
+    // Check if the request's origin is in the allowed origins array
+    if (allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
   credentials: true,
-}));
+  optionsSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions));
 
 const userRoutes = require('./routes/userRoutes');
 
