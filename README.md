@@ -42,19 +42,23 @@ project/
 ### Backend Setup
 
 1. Navigate to the backend directory:
+
    ```bash
    cd backend
    ```
 
 2. Install dependencies:
+
    ```bash
    npm install
    ```
 
 3. Create a `.env` file in the `backend` directory based on `.env.example`:
+
    ```bash
    cp .env.example .env
    ```
+
    Update `MONGO_URI` if necessary.
 
 4. Start the server:
@@ -66,11 +70,13 @@ project/
 ### Frontend Setup
 
 1. Navigate to the frontend directory:
+
    ```bash
    cd frontend
    ```
 
 2. Install dependencies:
+
    ```bash
    npm install
    ```
@@ -95,4 +101,3 @@ project/
 - `POST /api/users/auth`: Login user and get token (set in cookie).
 - `POST /api/users/logout`: Logout user and clear cookie.
 - `GET /api/users/profile`: Get current user profile (Protected).
-
